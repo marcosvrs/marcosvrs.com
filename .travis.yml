@@ -1,0 +1,57 @@
+dist: trusty
+
+addons:
+  chrome: stable
+
+language: node_js
+
+node_js:
+  - "node"
+
+env:
+  - CURRENT_TAG="$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+
+cache:
+  directories:
+    - node_modules
+
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+
+script:
+  - npm run lint
+  - npm test
+  - npm run e2e
+
+before_deploy:
+  - npm run build
+  # https://docs.travis-ci.com/user/deployment/releases
+  - if [ "$TRAVIS_BRANCH" == master ]; then
+      git config --local user.name "Marcos Vinícius Rubido";
+      git config --local user.email "github@marcosvrs.com";
+      git tag "$CURRENT_TAG";
+      echo "Created tag $CURRENT_TAG";
+    fi
+
+deploy:
+  - provider: firebase
+    skip_cleanup: true
+    token:
+      secure: "lfvJKVBlIXgvGYs15jTzgcn+FoeA6XmMHj2xl9XCnMuCgUKkwyu0t4HTzV/s6jEdR8V1/RM7yR6CWQkk2hrwVmwdUwnP1lH7daKObYfZp6RVigD/PV6ft+PVA/+PynbB67zRezqcOPY7oxq9WPJDVJWJg6IusNQ+YYww1U7OiU7u4JFZMx5hUHN+31uo8jb1P5shA3lwpxXxjbKACDZV/rrTs0jfaDLNnc7hZx6lo3zbFmz4uj0fgLxIXSZaHXPxU66+XGAOFxiZfcAdF8rf2B1t3vlgdc82gNDRjS1UkV32YecxbNZ0TyvkA5t6B+UfEgSq7Kto5MXCxRaKc2WdHiKB8BK0gu4RUm+rqyYkkjry1urgfhIbme+bTJTHTnozjMoz2gG5gbA4zaJeyQcQkOAkvweycSEi3CtIwsFQGVX3amzYx5uCiJbKp0LFPT8eVQZLHKkLn3v4wtoi4fZQMyvhQgkO1RMuMzN0igOarJLmyk6GUzxOap/Z6C+popyO/uGjELO+2amEhw28UAG32gD21sQJD1q15uiDyqRHgPPzBKjkLRk6sYIzmu/UPhOkCAIZhb/V2ECp8txx8Jw+Mc64SiUQPQU1iw1H+o3+Cb0h23HEhkFOs5Szl8tXo+RV1XG0cP2LdtHnyIMJ41vm/umBPT7hMNTonX/hXKVDvo0="
+    project: "develop"
+    on:
+      branch: develop
+  - provider: firebase
+    skip_cleanup: true
+    token:
+      secure: "lfvJKVBlIXgvGYs15jTzgcn+FoeA6XmMHj2xl9XCnMuCgUKkwyu0t4HTzV/s6jEdR8V1/RM7yR6CWQkk2hrwVmwdUwnP1lH7daKObYfZp6RVigD/PV6ft+PVA/+PynbB67zRezqcOPY7oxq9WPJDVJWJg6IusNQ+YYww1U7OiU7u4JFZMx5hUHN+31uo8jb1P5shA3lwpxXxjbKACDZV/rrTs0jfaDLNnc7hZx6lo3zbFmz4uj0fgLxIXSZaHXPxU66+XGAOFxiZfcAdF8rf2B1t3vlgdc82gNDRjS1UkV32YecxbNZ0TyvkA5t6B+UfEgSq7Kto5MXCxRaKc2WdHiKB8BK0gu4RUm+rqyYkkjry1urgfhIbme+bTJTHTnozjMoz2gG5gbA4zaJeyQcQkOAkvweycSEi3CtIwsFQGVX3amzYx5uCiJbKp0LFPT8eVQZLHKkLn3v4wtoi4fZQMyvhQgkO1RMuMzN0igOarJLmyk6GUzxOap/Z6C+popyO/uGjELO+2amEhw28UAG32gD21sQJD1q15uiDyqRHgPPzBKjkLRk6sYIzmu/UPhOkCAIZhb/V2ECp8txx8Jw+Mc64SiUQPQU1iw1H+o3+Cb0h23HEhkFOs5Szl8tXo+RV1XG0cP2LdtHnyIMJ41vm/umBPT7hMNTonX/hXKVDvo0="
+    project: "default"
+    on:
+      tags: true
+  - provider: releases
+  # https://docs.travis-ci.com/user/github-oauth-scopes/#Travis-CI-for-Open-Source-Projectsg
+    api_key:
+      secure: "XX4TxlJPFEVl+mhmIBn5teKNnxrh26iXpWN1CEWHgbmQ9gvvxhAdiRxQWGQ5Xu364M/RccSWSICtfgoWYprLg9lHX8XweS1UOcmnKCW8FHHxZChStWXb3WQ/Xah4lMnjjFjv85cUFSJxZyA4WU03av9o/kg3OxvfaMdIVbGOHzViLsMHHyih51ZSMCvUBf5JTioj91a7lkiud8j35I6Evlbj61COiUGZN9LsPqQm9lhHKr/GKzc/0MMjMt2H91byzKDxjfyDzQZ+gM4CCQdilfUY4pOHKYJ6wb3gZY4XH+mAOOcjiMBxm/jJa4M//o2TPEnLMe30HQs4ot4ISsEuc7wJEgwIs5HQsrguNsmg93JMM3blNWN8ak+YVZwOJHq0XvG8Uc3f8avqcRfBnCZcEGZvxED7YuJ/xmlqJb5wCnk84BkwVUBftWYclpuGbQLsfLlr9L7CQ1EkBZlfeBLp9Kraie/i/yRBDSA+EDPIkz86GrmtVpEuLukM1x4QXKcAtOcinml2GdhMyA1TxNu3129vrL7dKO0q9iml7gvyGah4/aF+UG2JWphWRQqJ146T2f55M2D/HT1q0OmEK0uS5XXiK5FVGkdCQrxcPfkwGFtkBHNWjmWWn4Lg4FHy/d8jBkw9Ccm/06NZYvGQwdW99iAmfSJYxOi8AbuQ1cEqcSY="
+    on:
+      branch: master

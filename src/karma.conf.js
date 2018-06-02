@@ -2,7 +2,7 @@
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
 module.exports = function (config) {
-  config.set({
+  let configuration = {
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
@@ -27,5 +27,18 @@ module.exports = function (config) {
     autoWatch: true,
     browsers: ['Chrome'],
     singleRun: false
-  });
+  };
+  
+  if (process.env.TRAVIS) {
+    configuration.customLaunchers = {
+      ChromeHeadlessNoSandbox: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
+    };
+    configuration.browsers = ['ChromeHeadlessNoSandbox'];
+    configuration.singleRun = true;
+  }
+  
+  config.set(configuration);
 };
