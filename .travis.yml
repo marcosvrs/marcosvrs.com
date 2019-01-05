@@ -15,15 +15,6 @@ cache:
   directories:
     - node_modules
 
-before_script:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-
-script:
-  - npm run lint
-  - npm test
-  - npm run e2e
-
 before_deploy:
   - npm run build
   # https://docs.travis-ci.com/user/deployment/releases
@@ -38,15 +29,14 @@ deploy:
   - provider: firebase
     skip_cleanup: true
     token:
-      secure: "lfvJKVBlIXgvGYs15jTzgcn+FoeA6XmMHj2xl9XCnMuCgUKkwyu0t4HTzV/s6jEdR8V1/RM7yR6CWQkk2hrwVmwdUwnP1lH7daKObYfZp6RVigD/PV6ft+PVA/+PynbB67zRezqcOPY7oxq9WPJDVJWJg6IusNQ+YYww1U7OiU7u4JFZMx5hUHN+31uo8jb1P5shA3lwpxXxjbKACDZV/rrTs0jfaDLNnc7hZx6lo3zbFmz4uj0fgLxIXSZaHXPxU66+XGAOFxiZfcAdF8rf2B1t3vlgdc82gNDRjS1UkV32YecxbNZ0TyvkA5t6B+UfEgSq7Kto5MXCxRaKc2WdHiKB8BK0gu4RUm+rqyYkkjry1urgfhIbme+bTJTHTnozjMoz2gG5gbA4zaJeyQcQkOAkvweycSEi3CtIwsFQGVX3amzYx5uCiJbKp0LFPT8eVQZLHKkLn3v4wtoi4fZQMyvhQgkO1RMuMzN0igOarJLmyk6GUzxOap/Z6C+popyO/uGjELO+2amEhw28UAG32gD21sQJD1q15uiDyqRHgPPzBKjkLRk6sYIzmu/UPhOkCAIZhb/V2ECp8txx8Jw+Mc64SiUQPQU1iw1H+o3+Cb0h23HEhkFOs5Szl8tXo+RV1XG0cP2LdtHnyIMJ41vm/umBPT7hMNTonX/hXKVDvo0="
+      secure: "KnyoVtnPJzYZ2t3FD8lbKEY/XMlkqXonWeEof3cFPwKjsstyi63gCAaLt5TeTPYF9mIu5eSs9hkpCDjHXD5VmpUC3WZ2EQ2zxtH/vIQ1pMAjOJCXUWETpBjS1oiPNZPMMsxeHvLQzrFaK1rPxFdx1rP9VDdizTJehOP/l2qeMC/zcY6fa2j3GZPtJcKf62glkb8nNXLN6apRKurqYEVWmz5j6uEfUWChi7HVef7tEXS7iZrPQQ23AxFmNfeccJ04RAMeDLWdrNZqWuLhXO1IqdXKLspJNFu/SYYE8Du/NjmzMA8EycDOHjdA4YRawgUkNLQdNpjpUyysQjukPyuTE8arm9Mm/3yZvmSF10D1Hnw2ZiN/MZfE8LOiISdICv/zX2jBJNSqcea/8NjqMUkJXTUmJnYLTTH4eFQwipiJ5L766C2XS3y+bx6vYC2byEvhzwqhptQHXU+Y+q9RfenFdm1/1BI3z6AyO0TQ0wH9e9IWeRL4V20wUR2DKtXuMmc54HhK34N8aNTfqZ3+Z4gI2tCmQrOnt1iPsIxNarw6+Uds1J8HrHGqwMh6L1jKoBydL0F6fMWiZ5VYzUG2Lsff24lkWqVlPXCMWNa2F19oA+cRQc26/ZyxXK2m+9V9kwQkYvb5Jrk7YzLD2nHPlSLiIT/78a+Umy2za1Jpc6ivd78="
     project: "develop"
     on:
       branch: develop
   - provider: firebase
     skip_cleanup: true
     token:
-      secure: "lfvJKVBlIXgvGYs15jTzgcn+FoeA6XmMHj2xl9XCnMuCgUKkwyu0t4HTzV/s6jEdR8V1/RM7yR6CWQkk2hrwVmwdUwnP1lH7daKObYfZp6RVigD/PV6ft+PVA/+PynbB67zRezqcOPY7oxq9WPJDVJWJg6IusNQ+YYww1U7OiU7u4JFZMx5hUHN+31uo8jb1P5shA3lwpxXxjbKACDZV/rrTs0jfaDLNnc7hZx6lo3zbFmz4uj0fgLxIXSZaHXPxU66+XGAOFxiZfcAdF8rf2B1t3vlgdc82gNDRjS1UkV32YecxbNZ0TyvkA5t6B+UfEgSq7Kto5MXCxRaKc2WdHiKB8BK0gu4RUm+rqyYkkjry1urgfhIbme+bTJTHTnozjMoz2gG5gbA4zaJeyQcQkOAkvweycSEi3CtIwsFQGVX3amzYx5uCiJbKp0LFPT8eVQZLHKkLn3v4wtoi4fZQMyvhQgkO1RMuMzN0igOarJLmyk6GUzxOap/Z6C+popyO/uGjELO+2amEhw28UAG32gD21sQJD1q15uiDyqRHgPPzBKjkLRk6sYIzmu/UPhOkCAIZhb/V2ECp8txx8Jw+Mc64SiUQPQU1iw1H+o3+Cb0h23HEhkFOs5Szl8tXo+RV1XG0cP2LdtHnyIMJ41vm/umBPT7hMNTonX/hXKVDvo0="
-    project: "default"
+      secure: "mF8LfCdwvfPxiAcsPPTdEbbqEjKh0NjdmrtLckMOtlfzziYlRYvTh0x8SwcBLSLwCxo+/Dr+oMEmNK38lNB9+lNk5RH31pak1XoKhm4+nDdbkHVBgW0Mrd6TQF1lI7q1G1+/NMPW1oyFPr7rWsY0o9GuiYcOh1PHZRwc8DAH/i3HlmD+Vi3ZMdQjrL92/wHZR6rYz7+I0J3hbKMMyrVTULy+ZOnkmXndg0MzB/z62nSQY8rd4bqyl2R1Gnn+PkLyBH9cdHWl16fVtmlevlV9KxmYOOUyBbRvIvJ/zFu8z0wGWCHnekMEfeCOAKBuZ54yxGTnJjFDaMVFtOPTb5SJX1MfJsKMQdUTFJQl6946/yXvhriuk+VnLbmZE0cbE92velcwVdbdhrrVCl7bzBCS6QyqwnBkFfhfzgEU7SGRo29/OLSBaRnBhYVvBRvvu9QmHaAIGN4qFADctFB3fcmG1++NdaEGJW++rWiI+Act6+6RqxA+vEF+oQAfPQP2k0+DYhWey+dI7Ky2myNGA8iI7hPk63uuA9UeeHQxEMXnPZByqJHuhKvHo3EJ2gxUgdDa7Zh4d0f8ISNcmyyyStbd+8IHL7XVanw06wsMjGYOg6vTuOs700nED1LonXyaT4lwVqtJ9AZ3d/UYjXCsHYkr+c+Y/EtyL1GM4Vl8NBZAAhc="
     on:
       tags: true
   - provider: releases
