@@ -1,0 +1,104 @@
+@import 'reboot.css';
+@font-face {
+    font-family: 'fontello';
+    src: url(./font/fontello.eot?94163368);
+    src: url(./font/fontello.eot?94163368#iefix) format("embedded-opentype"), url(./font/fontello.woff2?94163368) format("woff2"), url(./font/fontello.woff?94163368) format("woff"), url(./font/fontello.ttf?94163368) format("truetype"), url(./font/fontello.svg?94163368#fontello) format("svg");
+    font-weight: 400;
+    font-style: normal;
+}
+
+.icon:before {
+    speak: none;
+    display: inline-block;
+    text-decoration: inherit;
+    text-align: center;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #DDD;
+    color: #222;
+    padding: .25em 0;
+    width: 1.75em;
+    border-radius: .1em;
+    transition: background-color .75s .375s, color .75s;
+    font: 400 1.5em "fontello";
+}
+
+.xing:before {
+    content: '\f168';
+}
+
+.skype:before {
+    content: '\f17e';
+}
+
+.mail:before {
+    content: '\f0e0';
+}
+
+.doc-inv:before {
+    content: '\f15b';
+}
+
+.github:before {
+    content: '\f09b';
+}
+
+.linkedin:before {
+    content: '\f0e1';
+}
+
+.main {
+    background-color: #222;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container {
+    vertical-align: middle;
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 10em;
+}
+
+.header {
+    color: #FFF;
+    letter-spacing: -.015em;
+    font: 600 3.5em/1.25em "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.description {
+    color: #DDD;
+}
+
+.icons {
+    padding: 0;
+    margin-top: 2em;
+    list-style-type: none;
+}
+
+.icons>li {
+    display: inline;
+}
+
+.icons>li:not(:last-child) {
+    margin-right: .75em;
+}
+
+.icon:hover::before,
+.icon:active::before {
+    transition: background-color .75s, color .75s .375s;
+    background-color: #222;
+    color: #DDD;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 85%;
+        margin-top: 2.5em;
+    }
+    .icons {
+        margin-top: 0;
+    }
+}
