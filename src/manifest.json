@@ -1,0 +1,11 @@
+{
+    "name": "Marcos Vinícius Rubido",
+    "short_name": "marcosvr",
+    "icons": [{
+        "src": "google-touch-icon.png",
+        "sizes": "512x512"
+    }],
+    "background_color": "#222",
+    "theme_color": "#ddd",
+    "display": "fullscreen"
+}
