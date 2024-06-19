@@ -1,11 +1,44 @@
 {
-    "name": "Marcos Vinícius Rubido",
-    "short_name": "marcosvr",
-    "icons": [{
-        "src": "google-touch-icon.png",
-        "sizes": "512x512"
-    }],
-    "background_color": "#222",
-    "theme_color": "#ddd",
-    "display": "fullscreen"
+  "name": "Marcos Vinícius Rubido",
+  "short_name": "Marcos V.",
+  "description": "Marcos Vinícius Rubido - Full Stack Developer & Software Engineer in Web Development",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": "/",
+  "scope": "/",
+  "background_color": "#222",
+  "theme_color": "#ddd",
+  "display": "fullscreen",
+  "orientation": "any",
+  "lang": "en",
+  "categories": [
+    "business",
+    "portfolio",
+    "technology"
+  ],
+  "shortcuts": [
+    {
+      "name": "LinkedIn Profile",
+      "short_name": "LinkedIn",
+      "description": "Visit my LinkedIn profile",
+      "url": "https://www.linkedin.com/in/marcosvrs",
+    },
+    {
+      "name": "GitHub Profile",
+      "short_name": "GitHub",
+      "description": "Visit my GitHub profile",
+      "url": "https://github.com/marcosvrs",
+    },
+    {
+      "name": "Email Contact",
+      "short_name": "Email",
+      "description": "Send me an email",
+      "url": "mailto:me@marcosvr.com?subject=Website Contact",
+    }
+  ]
 }

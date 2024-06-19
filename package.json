@@ -1,6 +1,6 @@
 {
-  "name": "marcosvrs.com",
-  "version": "1.0.0",
+  "name": "marcosvr.com",
+  "version": "1.1.0",
   "description": "My Website",
   "homepage": "https://github.com/marcosvrs/marcosvrs.com#readme",
   "bugs": {
@@ -11,11 +11,8 @@
     "url": "git+https://github.com/marcosvrs/marcosvrs.com.git"
   },
   "license": "MIT",
-  "author": "Marcos V. Rubido <me@marcosvrs.com> (https://marcosvrs.com/)",
+  "author": "Marcos V. Rubido <github@marcosvr.com> (https://marcosvr.com/)",
   "scripts": {
     "build": "mkdir dist && cp -a src/. dist"
-  },
-  "devDependencies": {
-    "firebase-tools": "^6.2.2"
   }
 }
